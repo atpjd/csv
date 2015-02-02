@@ -77,6 +77,8 @@ define csv => type {
 				}
 			else // array
 				with f in #r do => {
+					// filtering for nulls
+					#f->isa(::null) ? #f = ''
 					// filtering for line breaks and double quotes
 					#f->replace('"','""')&replace('\r\n','\n')&replace('\r','\n')
 					#ff->insert(#f)
